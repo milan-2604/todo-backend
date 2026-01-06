@@ -101,11 +101,13 @@ router.post(
         {expiresIn: "1d"}
       );
 
-      const isProd = process.env.NODE_ENV === "production";
+      // const isProd = process.env.NODE_ENV === "production";
       res.cookie("token",token,{
         httpOnly: true,
-        secure: isProd,
-        sameSite: isProd ? "none" :  "lax",
+        // secure: isProd,
+        secure: true,
+        // sameSite: isProd ? "none" :  "lax",
+        sameSite: "none",
         maxAge: 24*60*60*1000
       });
 
@@ -126,12 +128,14 @@ router.post(
 
 
 router.post("/logout", (req, res) => {
-  const isProd = process.env.NODE_ENV === "production";
+  // const isProd = process.env.NODE_ENV === "production";
 
   res.clearCookie("token", {
     httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
+    // secure: isProd,
+    secure: true,
+    // sameSite: isProd ? "none" : "lax",
+    sameSite: "none",
   });
 
   res.status(200).json({
