@@ -108,6 +108,7 @@ router.post(
         secure: true,
         // sameSite: isProd ? "none" :  "lax",
         sameSite: "none",
+        partitioned: true, // Add this for mobile browser compatibility
         maxAge: 24*60*60*1000
       });
 
@@ -136,6 +137,7 @@ router.post("/logout", (req, res) => {
     secure: true,
     // sameSite: isProd ? "none" : "lax",
     sameSite: "none",
+    partitioned: true, // Add this for mobile browser compatibility
   });
 
   res.status(200).json({
