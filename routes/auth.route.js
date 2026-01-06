@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const userModel = require("../models/user.model");
-
+const authMiddleWare = require("../middlewares/authMiddleware");
 
 router.post(
   "/signup",
@@ -143,7 +143,7 @@ router.post("/logout", (req, res) => {
   });
 });
 
-router.get("/me", authMiddleware, (req, res) => {
+router.get("/me", authMiddleWare, (req, res) => {
   res.status(200).json({
     isAuth: true,
     user: req.user, // optional
