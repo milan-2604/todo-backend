@@ -143,5 +143,13 @@ router.post("/logout", (req, res) => {
   });
 });
 
+router.get("/me", authMiddleware, (req, res) => {
+  res.status(200).json({
+    isAuth: true,
+    user: req.user, // optional
+  });
+});
+
+
 
 module.exports = router;
